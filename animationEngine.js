@@ -119,7 +119,12 @@
                     var kl = ani.keyList[j];
                     if (kl.time <= time) {
                         var data = kl.process(time, j > 0 ? ani.keyList[j - 1] : null, kl, j < ani.keyList.length - 1 ? ani.keyList[j + 1] : null);
-                        document.getElementById(ani.target).style.cssText = ani._sourceStyle + ani.property + ":" + kl.prefix + data.value + kl.suffix;
+                        Runtime.idx[ani.target][ani.property] = ani.property + ":" + kl.prefix + data.value + kl.suffix;
+                        var tmp = [];
+                        for (var x in Runtime.idx[ani.target]) {
+                            tmp.push(Runtime.idx[ani.target][x]);
+                        }
+                        document.getElementById(ani.target).style.cssText = ani._sourceStyle + tmp.join(';');
                         if (data.pass) {
                             ani._renderIndex++;
                         }
@@ -141,10 +146,12 @@
                 animations: this.animations.slice(0)
             };
 
+            Runtime.idx = {};
             for (var i = 0; i < Runtime.animations.length; i++) {
                 var ani = Runtime.animations[i];
                 ani._renderIndex = 0;
                 ani._sourceStyle = document.getElementById(ani.target).style.cssText;
+                Runtime.idx[ani.target] = {};
             };
             Timer.start(this);
         },
