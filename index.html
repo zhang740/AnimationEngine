@@ -1,99 +1,347 @@
 <!DOCTYPE html>
 <html>
 
-  <head>
+<head>
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <meta name="description" content="Animationengine : 开源的HTML动画引擎">
-
     <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
-
     <title>Animationengine</title>
-  </head>
+</head>
 
-  <body>
-
+<body>
     <!-- HEADER -->
     <div id="header_wrap" class="outer">
         <header class="inner">
-          <a id="forkme_banner" href="https://github.com/zhang740/AnimationEngine">View on GitHub</a>
-
-          <h1 id="project_title">Animationengine</h1>
-          <h2 id="project_tagline">开源的HTML动画引擎</h2>
-
+            <a id="forkme_banner" href="https://github.com/zhang740/AnimationEngine">View on GitHub</a>
+            <h1 id="project_title">Animationengine</h1>
+            <h2 id="project_tagline">开源的HTML动画引擎</h2>
             <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/zhang740/AnimationEngine/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/zhang740/AnimationEngine/tarball/master">Download this project as a tar.gz file</a>
+                <a class="zip_download_link" href="https://github.com/zhang740/AnimationEngine/zipball/master">Download this project as a .zip file</a>
+                <a class="tar_download_link" href="https://github.com/zhang740/AnimationEngine/tarball/master">Download this project as a tar.gz file</a>
             </section>
         </header>
     </div>
-
     <!-- MAIN CONTENT -->
     <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-        <h1>
+        <section id="main_content" class="inner">
+            <h1>
 <a id="animationengine" class="anchor" href="#animationengine" aria-hidden="true"><span class="octicon octicon-link"></span></a>AnimationEngine</h1>
-
-<p>开源的HTML动画引擎。</p>
-
-<h1>
+            <p>开源的HTML动画引擎。</p>
+            <h1>
 <a id="介绍" class="anchor" href="#%E4%BB%8B%E7%BB%8D" aria-hidden="true"><span class="octicon octicon-link"></span></a>介绍</h1>
-
-<p>基于描述式的使用方式，以后会加入可视化设计器实现所见即所得。
-当前仅为概念验证阶段，效果仅包含间断、连续、颜色渐变。
-已支持预渲染帧序列。</p>
-
-<h1>
+            <p>基于描述式的使用方式，以后会加入可视化设计器实现所见即所得。 当前仅为概念验证阶段，效果仅包含间断、连续、颜色渐变。 已支持预渲染帧序列。
+            </p>
+            <h1>
 <a id="兼容性" class="anchor" href="#%E5%85%BC%E5%AE%B9%E6%80%A7" aria-hidden="true"><span class="octicon octicon-link"></span></a>兼容性</h1>
-
-<p>目前的兼容性问题为IE8及以下不支持自定义标签的children属性。
-解决方案：
-使用div标签，然后使用name/type标识类型 或 使用JSON方式提供数据源。</p>
-
-<h1>
+            <p>目前的兼容性问题为IE8及以下不支持自定义标签的children属性。 解决方案： 使用div标签，然后使用name/type标识类型 或 使用JSON方式提供数据源。</p>
+            <h1>
 <a id="使用" class="anchor" href="#%E4%BD%BF%E7%94%A8" aria-hidden="true"><span class="octicon octicon-link"></span></a>使用</h1>
-
-<div class="highlight highlight-html"><pre>&lt;<span class="pl-ent">storyboard</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>demo<span class="pl-pds">"</span></span>&gt;
+            <div class="highlight highlight-html"><pre>&lt;<span class="pl-ent">storyboard</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>demo<span class="pl-pds">"</span></span>&gt;
     &lt;<span class="pl-ent">animation</span> <span class="pl-e">target</span>=<span class="pl-s"><span class="pl-pds">"</span>testBox<span class="pl-pds">"</span></span> <span class="pl-e">property</span>=<span class="pl-s"><span class="pl-pds">"</span>margin-left<span class="pl-pds">"</span></span> <span class="pl-e">repeat</span>=<span class="pl-s"><span class="pl-pds">"</span>1<span class="pl-pds">"</span></span>&gt;
         &lt;<span class="pl-ent">easing</span> <span class="pl-e">time</span>=<span class="pl-s"><span class="pl-pds">"</span>0<span class="pl-pds">"</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span>0<span class="pl-pds">"</span></span> <span class="pl-e">suffix</span>=<span class="pl-s"><span class="pl-pds">"</span>px<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">easing</span>&gt;
         &lt;<span class="pl-ent">easing</span> <span class="pl-e">time</span>=<span class="pl-s"><span class="pl-pds">"</span>500<span class="pl-pds">"</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span>150<span class="pl-pds">"</span></span> <span class="pl-e">suffix</span>=<span class="pl-s"><span class="pl-pds">"</span>px<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">easing</span>&gt;
         &lt;<span class="pl-ent">easing</span> <span class="pl-e">time</span>=<span class="pl-s"><span class="pl-pds">"</span>1000<span class="pl-pds">"</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span>0<span class="pl-pds">"</span></span> <span class="pl-e">suffix</span>=<span class="pl-s"><span class="pl-pds">"</span>px<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">easing</span>&gt;
     &lt;/<span class="pl-ent">animation</span>&gt;
 &lt;/<span class="pl-ent">storyboard</span>&gt;</pre></div>
-
-<h1>
+            <h1>
 <a id="demo" class="anchor" href="#demo" aria-hidden="true"><span class="octicon octicon-link"></span></a>Demo</h1>
-
-<p><a href="http://zhang740.github.io/AnimationEngine/">http://zhang740.github.io/AnimationEngine/</a></p>
-
-<h1>
+            <style type="text/css">
+            #content,
+            #content div {
+                border: 1px solid red;
+                margin: 10px 10px 10px 0px;
+                padding: 10px;
+            }
+            
+            div[id^='test'] {
+                width: 80px;
+            }
+            
+            storyboard {
+                display: none;
+            }
+            </style>
+            <div id="content">
+                <div>
+                    <button onclick="AE('discrete').start();">间隔</button>
+                    <button onclick="AE('easing').start();">补帧</button>
+                    <button onclick="AE('deMix').start();">混合</button>
+                    <button onclick="AE('notarget','testBox2').start();">动态套用动画到2</button>
+                    <button onclick="AE('notarget','testBox2').start();AE('notarget','testBox3').start();">动态套用动画到23</button>
+                    <button onclick="AE('easingcolor').start();">颜色</button>
+                    <button onclick="AE.engine.design.init('content');">设计器，施工中</button>
+                    <button onclick="AE.engine.design.close();">关闭设计器</button>
+                </div>
+                <div id="testBox">
+                    <p>testBox</p>
+                </div>
+                <div id="testBox2">
+                    <p>testBox2</p>
+                </div>
+                <div id="testBox3">
+                    <p>testBox3</p>
+                </div>
+                <div id="testBox4">
+                    <p>testBox4</p>
+                </div>
+                <div id="testBox5">
+                    <p>testBox5</p>
+                </div>
+                <div id="testBox6">
+                    <p>testBox6</p>
+                </div>
+                <div id="testBox7">
+                    <p>testBox7</p>
+                </div>
+            </div>
+            <storyboard id="discrete">
+                <animation target="testBox" property="margin-left" repeat="1">
+                    <discrete time="0" value="0"></discrete>
+                    <discrete time="500" value="50px"></discrete>
+                    <discrete time="1000" value="0"></discrete>
+                </animation>
+                <animation target="testBox2" property="margin-left" repeat="1">
+                    <discrete time="0" value="0"></discrete>
+                    <discrete time="500" value="150px"></discrete>
+                    <discrete time="1000" value="0"></discrete>
+                </animation>
+                <animation target="testBox3" property="margin-left" repeat="1">
+                    <discrete time="0" value="0"></discrete>
+                    <discrete time="500" value="250px"></discrete>
+                    <discrete time="1000" value="0"></discrete>
+                </animation>
+                <animation target="testBox4" property="margin-left" repeat="1">
+                    <discrete time="0" value="0"></discrete>
+                    <discrete time="500" value="350px"></discrete>
+                    <discrete time="1000" value="0"></discrete>
+                </animation>
+                <animation target="testBox5" property="margin-left" repeat="1">
+                    <discrete time="0" value="0"></discrete>
+                    <discrete time="500" value="450px"></discrete>
+                    <discrete time="1000" value="0"></discrete>
+                </animation>
+                <animation target="testBox6" property="margin-left" repeat="1">
+                    <discrete time="0" value="0"></discrete>
+                    <discrete time="500" value="550px"></discrete>
+                    <discrete time="1000" value="0"></discrete>
+                </animation>
+            </storyboard>
+            <storyboard id="easing">
+                <animation target="testBox" property="margin-left" repeat="2">
+                    <easing time="0" value="0" suffix="px"></easing>
+                    <easing time="500" value="50" suffix="px"></easing>
+                    <easing time="1000" value="0" suffix="px"></easing>
+                </animation>
+                <animation target="testBox2" property="margin-left" repeat="1">
+                    <easing time="0" value="0" suffix="px"></easing>
+                    <easing time="500" value="150" suffix="px"></easing>
+                    <easing time="1000" value="0" suffix="px"></easing>
+                </animation>
+                <animation target="testBox3" property="margin-left" repeat="1">
+                    <easing time="0" value="0" suffix="px"></easing>
+                    <easing time="500" value="250" suffix="px"></easing>
+                    <easing time="1000" value="0" suffix="px"></easing>
+                </animation>
+                <animation target="testBox" property="opacity" repeat="1">
+                    <easing time="0" value="1"></easing>
+                    <easing time="500" value="0"></easing>
+                    <easing time="1000" value="1"></easing>
+                </animation>
+                <animation target="testBox2" property="opacity" repeat="1">
+                    <easing time="0" value="1"></easing>
+                    <easing time="500" value="0"></easing>
+                    <easing time="1000" value="1"></easing>
+                </animation>
+                <animation target="testBox3" property="opacity" repeat="1">
+                    <easing time="0" value="1"></easing>
+                    <easing time="500" value="0"></easing>
+                    <easing time="1000" value="1"></easing>
+                </animation>
+                <animation target="testBox4" property="margin-left" repeat="1">
+                    <easing time="0" value="0" suffix="px"></easing>
+                    <easing time="500" value="350" suffix="px"></easing>
+                    <easing time="1000" value="0" suffix="px"></easing>
+                </animation>
+                <animation target="testBox5" property="margin-left" repeat="1">
+                    <easing time="0" value="0" suffix="px"></easing>
+                    <easing time="500" value="450" suffix="px"></easing>
+                    <easing time="1000" value="0" suffix="px"></easing>
+                </animation>
+                <animation target="testBox6" property="margin-left" repeat="1">
+                    <easing time="0" value="0" suffix="px"></easing>
+                    <easing time="500" value="550" suffix="px"></easing>
+                    <easing time="1000" value="0" suffix="px"></easing>
+                </animation>
+            </storyboard>
+            <storyboard id="deMix">
+                <animation target="testBox" property="margin-left" repeat="1">
+                    <discrete time="0" value="0" suffix="px"></discrete>
+                    <discrete time="500" value="50" suffix="px"></discrete>
+                    <easing time="500" value="50" suffix="px"></easing>
+                    <easing time="1000" value="0" suffix="px"></easing>
+                </animation>
+                <animation target="testBox2" property="margin-left" repeat="1">
+                    <discrete time="0" value="0" suffix="px"></discrete>
+                    <discrete time="500" value="150" suffix="px"></discrete>
+                    <easing time="500" value="150" suffix="px"></easing>
+                    <easing time="1000" value="0" suffix="px"></easing>
+                </animation>
+                <animation target="testBox3" property="margin-left" repeat="1">
+                    <discrete time="0" value="0" suffix="px"></discrete>
+                    <discrete time="500" value="250" suffix="px"></discrete>
+                    <easing time="500" value="250" suffix="px"></easing>
+                    <easing time="1000" value="0" suffix="px"></easing>
+                </animation>
+                <animation target="testBox4" property="margin-left" repeat="1">
+                    <discrete time="0" value="0" suffix="px"></discrete>
+                    <discrete time="500" value="350" suffix="px"></discrete>
+                    <easing time="500" value="350" suffix="px"></easing>
+                    <easing time="1000" value="0" suffix="px"></easing>
+                </animation>
+                <animation target="testBox5" property="margin-left" repeat="1">
+                    <discrete time="0" value="0" suffix="px"></discrete>
+                    <discrete time="500" value="450" suffix="px"></discrete>
+                    <easing time="500" value="450" suffix="px"></easing>
+                    <easing time="1000" value="0" suffix="px"></easing>
+                </animation>
+                <animation target="testBox6" property="margin-left" repeat="1">
+                    <discrete time="0" value="0" suffix="px"></discrete>
+                    <discrete time="500" value="550" suffix="px"></discrete>
+                    <easing time="500" value="550" suffix="px"></easing>
+                    <easing time="1000" value="0" suffix="px"></easing>
+                </animation>
+            </storyboard>
+            <storyboard id="notarget">
+                <animation target="" property="margin-left" repeat="1">
+                    <easing time="0" value="0" suffix="px"></easing>
+                    <easing time="500" value="150" suffix="px"></easing>
+                    <easing time="1000" value="0" suffix="px"></easing>
+                </animation>
+            </storyboard>
+            <storyboard id="easingcolor">
+                <animation target="testBox" property="border-color" repeat="2">
+                    <easingcolor time="0" value="ff0000" prefix="#"></easingcolor>
+                    <easingcolor time="500" value="00ff00" prefix="#"></easingcolor>
+                    <easingcolor time="1000" value="0000ff" prefix="#"></easingcolor>
+                    <easingcolor time="1500" value="ff0000" prefix="#"></easingcolor>
+                </animation>
+            </storyboard>
+            
+            <h1>
 <a id="todo" class="anchor" href="#todo" aria-hidden="true"><span class="octicon octicon-link"></span></a>TODO</h1>
-
-<p>功能：</p>
-
-<ul>
-<li>div标签，name/type标识类型，兼容</li>
-<li>JSON数据源</li>
-<li>扩充效果</li>
-<li>设计器</li>
-</ul>
-
-<h1>
+            <p>功能：</p>
+            <ul>
+                <li>div标签，name/type标识类型，兼容</li>
+                <li>JSON数据源</li>
+                <li>扩充效果</li>
+                <li>设计器</li>
+            </ul>
+            <h1>
 <a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h1>
-
-<p>MIT</p>
-      </section>
+            <p>MIT</p>
+        </section>
     </div>
-
     <!-- FOOTER  -->
     <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">Animationengine maintained by <a href="https://github.com/zhang740">zhang740</a></p>
-        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
-      </footer>
+        <footer class="inner">
+            <p class="copyright">Animationengine maintained by <a href="https://github.com/zhang740">zhang740</a></p>
+            <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
+        </footer>
     </div>
-
+    <script type="text/javascript" src="javascripts/animationEngine.js"></script>
+    <script type="text/javascript" src="javascripts/animationEngine.action.js"></script>
+    <script type="text/javascript" src="javascripts/animationEngine.design.js"></script>
+    <!-- 设计器相关，施工中，待分离 -->
+    <style type="text/css">
+    .design {
+        border: 1px solid red;
+        margin: 10px;
+        padding: 10px;
+        position: fixed;
+        background-color: white;
+        box-shadow: 4px 4px 3px #333;
+        z-index: 9999;
+        display: none;
+        opacity: 0.2;
+    }
     
+    .design:hover {
+        opacity: 1;
+    }
+    
+    .design * {
+        font-family: '微软雅黑';
+    }
+    
+    .design>section {
+        background-color: #6DB5FF;
+        margin: -10px;
+    }
+    
+    .design>section>p {
+        margin: 0px;
+        padding: 10px;
+        color: #9F2A2A;
+        text-shadow: 1px 1px grey;
+    }
+    
+    #designPanel {
+        bottom: 10px;
+        right: 10px;
+    }
+    
+    #designTimePanel {
+        bottom: 10px;
+        left: 10px;
+    }
+    
+    .timeLayout * {
+        width: auto;
+        float: left;
+    }
+    </style>
+    <div id="designPanel" class="design">
+        <section>
+            <p>设计面板</p>
+        </section>
+        <p>选中的元素：</p>
+        <p id="designTarget"></p>
+        <p>元素ID：</p>
+        <p id="designTargetId"></p>
+        <p>目标属性：</p>
+        <select>
+            <option>margin-left</option>
+            <option>color</option>
+            <option>opacity</option>
+        </select>
+        <p>
+            <button>添加层</button>
+            <button>生成脚本</button>
+        </p>
+        <p>
+        </p>
+    </div>
+    <div id="designTimePanel" class="design">
+        <section>
+            <p>时间轴面板</p>
+        </section>
+        <div class="timeLayout">
+            <p>Layout1</p>
+            <p>----------------------------------------------------------------</p>
+        </div>
+        <div class="timeLayout">
+            <p>Layout2</p>
+            <p>----------------------------------------------------------------</p>
+        </div>
+        <p>时间：
+            <input type="number" style="width:50px"> 值：
+            <input type="text" style="width:50px">
+            <button>添加时间点</button>
+            <button>播放</button>
+            <button>暂停</button>
+        </p>
+    </div>
+</body>
 
-  </body>
 </html>
