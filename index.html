@@ -39,17 +39,25 @@
 <h1>
 <a id="介绍" class="anchor" href="#%E4%BB%8B%E7%BB%8D" aria-hidden="true"><span class="octicon octicon-link"></span></a>介绍</h1>
 
-<p>基于描述式的使用方式，以后会加入可视化设计器。
-当前仅为概念验证阶段，效果仅包含间断、连续模式。</p>
+<p>基于描述式的使用方式，以后会加入可视化设计器实现所见即所得。
+当前仅为概念验证阶段，效果仅包含间断、连续、颜色渐变。
+已支持预渲染帧序列。</p>
+
+<h1>
+<a id="兼容性" class="anchor" href="#%E5%85%BC%E5%AE%B9%E6%80%A7" aria-hidden="true"><span class="octicon octicon-link"></span></a>兼容性</h1>
+
+<p>目前的兼容性问题为IE8及以下不支持自定义标签的children属性。
+解决方案：
+使用div标签，然后使用name/type标识类型 或 使用JSON方式提供数据源。</p>
 
 <h1>
 <a id="使用" class="anchor" href="#%E4%BD%BF%E7%94%A8" aria-hidden="true"><span class="octicon octicon-link"></span></a>使用</h1>
 
-<div class="highlight highlight-html"><pre>&lt;<span class="pl-ent">storyboard</span> <span class="pl-e">id</span>=<span class="pl-s1"><span class="pl-pds">"</span>demo<span class="pl-pds">"</span></span>&gt;
-    &lt;<span class="pl-ent">animation</span> <span class="pl-e">target</span>=<span class="pl-s1"><span class="pl-pds">"</span>testBox<span class="pl-pds">"</span></span> <span class="pl-e">property</span>=<span class="pl-s1"><span class="pl-pds">"</span>margin-left<span class="pl-pds">"</span></span> <span class="pl-e">repeat</span>=<span class="pl-s1"><span class="pl-pds">"</span>1<span class="pl-pds">"</span></span>&gt;
-        &lt;<span class="pl-ent">easing</span> <span class="pl-e">time</span>=<span class="pl-s1"><span class="pl-pds">"</span>0<span class="pl-pds">"</span></span> <span class="pl-e">value</span>=<span class="pl-s1"><span class="pl-pds">"</span>0<span class="pl-pds">"</span></span> <span class="pl-e">suffix</span>=<span class="pl-s1"><span class="pl-pds">"</span>px<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">easing</span>&gt;
-        &lt;<span class="pl-ent">easing</span> <span class="pl-e">time</span>=<span class="pl-s1"><span class="pl-pds">"</span>500<span class="pl-pds">"</span></span> <span class="pl-e">value</span>=<span class="pl-s1"><span class="pl-pds">"</span>150<span class="pl-pds">"</span></span> <span class="pl-e">suffix</span>=<span class="pl-s1"><span class="pl-pds">"</span>px<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">easing</span>&gt;
-        &lt;<span class="pl-ent">easing</span> <span class="pl-e">time</span>=<span class="pl-s1"><span class="pl-pds">"</span>1000<span class="pl-pds">"</span></span> <span class="pl-e">value</span>=<span class="pl-s1"><span class="pl-pds">"</span>0<span class="pl-pds">"</span></span> <span class="pl-e">suffix</span>=<span class="pl-s1"><span class="pl-pds">"</span>px<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">easing</span>&gt;
+<div class="highlight highlight-html"><pre>&lt;<span class="pl-ent">storyboard</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>demo<span class="pl-pds">"</span></span>&gt;
+    &lt;<span class="pl-ent">animation</span> <span class="pl-e">target</span>=<span class="pl-s"><span class="pl-pds">"</span>testBox<span class="pl-pds">"</span></span> <span class="pl-e">property</span>=<span class="pl-s"><span class="pl-pds">"</span>margin-left<span class="pl-pds">"</span></span> <span class="pl-e">repeat</span>=<span class="pl-s"><span class="pl-pds">"</span>1<span class="pl-pds">"</span></span>&gt;
+        &lt;<span class="pl-ent">easing</span> <span class="pl-e">time</span>=<span class="pl-s"><span class="pl-pds">"</span>0<span class="pl-pds">"</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span>0<span class="pl-pds">"</span></span> <span class="pl-e">suffix</span>=<span class="pl-s"><span class="pl-pds">"</span>px<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">easing</span>&gt;
+        &lt;<span class="pl-ent">easing</span> <span class="pl-e">time</span>=<span class="pl-s"><span class="pl-pds">"</span>500<span class="pl-pds">"</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span>150<span class="pl-pds">"</span></span> <span class="pl-e">suffix</span>=<span class="pl-s"><span class="pl-pds">"</span>px<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">easing</span>&gt;
+        &lt;<span class="pl-ent">easing</span> <span class="pl-e">time</span>=<span class="pl-s"><span class="pl-pds">"</span>1000<span class="pl-pds">"</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span>0<span class="pl-pds">"</span></span> <span class="pl-e">suffix</span>=<span class="pl-s"><span class="pl-pds">"</span>px<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">easing</span>&gt;
     &lt;/<span class="pl-ent">animation</span>&gt;
 &lt;/<span class="pl-ent">storyboard</span>&gt;</pre></div>
 
@@ -64,15 +72,10 @@
 <p>功能：</p>
 
 <ul>
+<li>div标签，name/type标识类型，兼容</li>
 <li>JSON数据源</li>
 <li>扩充效果</li>
 <li>设计器</li>
-</ul>
-
-<p>性能：</p>
-
-<ul>
-<li>预渲染帧序列</li>
 </ul>
 
 <h1>
