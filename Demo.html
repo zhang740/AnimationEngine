@@ -2,21 +2,18 @@
 <html lang="zh-cn">
 
 <head>
-    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>AnimationEngine Demo</title>
     <style type="text/css">
-    div {
+    #content,
+    #content div {
         border: 1px solid red;
         margin: 10px 10px 10px 0px;
         padding: 10px;
     }
     
-    #testBox,
-    #testBox2,
-    #testBox3,
-    #testBox4,
-    #testBox5,
-    #testBox6 {
+    div[id^='test'] {
         width: 80px;
     }
     
@@ -27,31 +24,38 @@
 </head>
 
 <body>
-    <div>
-        <button onclick="AE('discrete').start();">间隔</button>
-        <button onclick="AE('easing').start();">补帧</button>
-        <button onclick="AE('deMix').start();">混合</button>
-        <button onclick="AE('notarget','testBox2').start();">动态套用动画到2</button>
-        <button onclick="AE('notarget','testBox2').start();AE('notarget','testBox3').start();">动态套用动画到23</button>
-        <button onclick="AE('easingcolor').start();">颜色</button>
-    </div>
-    <div id="testBox">
-        <p>testBox</p>
-    </div>
-    <div id="testBox2">
-        <p>testBox2</p>
-    </div>
-    <div id="testBox3">
-        <p>testBox3</p>
-    </div>
-    <div id="testBox4">
-        <p>testBox4</p>
-    </div>
-    <div id="testBox5">
-        <p>testBox5</p>
-    </div>
-    <div id="testBox6">
-        <p>testBox6</p>
+    <div id="content">
+        <div>
+            <button onclick="AE('discrete').start();">间隔</button>
+            <button onclick="AE('easing').start();">补帧</button>
+            <button onclick="AE('deMix').start();">混合</button>
+            <button onclick="AE('notarget','testBox2').start();">动态套用动画到2</button>
+            <button onclick="AE('notarget','testBox2').start();AE('notarget','testBox3').start();">动态套用动画到23</button>
+            <button onclick="AE('easingcolor').start();">颜色</button>
+            <button onclick="AE.engine.design.init('content');">设计器，施工中</button>
+            <button onclick="AE.engine.design.close();">关闭设计器</button>
+        </div>
+        <div id="testBox">
+            <p>testBox</p>
+        </div>
+        <div id="testBox2">
+            <p>testBox2</p>
+        </div>
+        <div id="testBox3">
+            <p>testBox3</p>
+        </div>
+        <div id="testBox4">
+            <p>testBox4</p>
+        </div>
+        <div id="testBox5">
+            <p>testBox5</p>
+        </div>
+        <div id="testBox6">
+            <p>testBox6</p>
+        </div>
+        <div id="testBox7">
+            <p>testBox7</p>
+        </div>
     </div>
     <storyboard id="discrete">
         <animation target="testBox" property="margin-left" repeat="1">
@@ -86,7 +90,7 @@
         </animation>
     </storyboard>
     <storyboard id="easing">
-        <animation target="testBox" property="margin-left" repeat="1">
+        <animation target="testBox" property="margin-left" repeat="2">
             <easing time="0" value="0" suffix="px"></easing>
             <easing time="500" value="50" suffix="px"></easing>
             <easing time="1000" value="0" suffix="px"></easing>
@@ -178,7 +182,7 @@
         </animation>
     </storyboard>
     <storyboard id="easingcolor">
-        <animation target="testBox" property="border-color" repeat="1">
+        <animation target="testBox" property="border-color" repeat="2">
             <easingcolor time="0" value="ff0000" prefix="#"></easingcolor>
             <easingcolor time="500" value="00ff00" prefix="#"></easingcolor>
             <easingcolor time="1000" value="0000ff" prefix="#"></easingcolor>
@@ -187,11 +191,101 @@
     </storyboard>
     <script type="text/javascript" src="animationEngine.js"></script>
     <script type="text/javascript" src="animationEngine.action.js"></script>
+    <script type="text/javascript" src="animationEngine.design.js"></script>
     <script type="text/javascript">
-    // AE.engine.cache();
-    // var sb = AE.engine.findStoryBoard('discrete').start();
-    // sb.start();
+    AE.engine.cache();
+    var sb = AE.engine.findStoryBoard('easing').start();
     </script>
+    <!-- 设计器相关，施工中，待分离 -->
+    <style type="text/css">
+    .design {
+        border: 1px solid red;
+        margin: 10px;
+        padding: 10px;
+        position: fixed;
+        background-color: white;
+        box-shadow: 4px 4px 3px #333;
+        z-index: 9999;
+        display: none;
+        opacity: 0.2;
+    }
+    
+    .design:hover {
+        opacity: 1;
+    }
+    
+    .design * {
+        font-family: '微软雅黑';
+    }
+    
+    .design>section {
+        background-color: #6DB5FF;
+        margin: -10px;
+    }
+    
+    .design>section>p {
+        margin: 0px;
+        padding: 10px;
+        color: #9F2A2A;
+        text-shadow: 1px 1px grey;
+    }
+    
+    #designPanel {
+        bottom: 10px;
+        right: 10px;
+    }
+    
+    #designTimePanel {
+        bottom: 10px;
+        left: 10px;
+    }
+    
+    .timeLayout * {
+        width: auto;
+        float: left;
+    }
+    </style>
+    <div id="designPanel" class="design">
+        <section>
+            <p>设计面板</p>
+        </section>
+        <p>选中的元素：</p>
+        <p id="designTarget"></p>
+        <p>元素ID：</p>
+        <p id="designTargetId"></p>
+        <p>目标属性：</p>
+        <select>
+            <option>margin-left</option>
+            <option>color</option>
+            <option>opacity</option>
+        </select>
+        <p>
+            <button>添加层</button>
+            <button>生成脚本</button>
+        </p>
+        <p>
+        </p>
+    </div>
+    <div id="designTimePanel" class="design">
+        <section>
+            <p>时间轴面板</p>
+        </section>
+        <div class="timeLayout">
+            <p>Layout1</p>
+            <p>----------------------------------------------------------------</p>
+        </div>
+        <div class="timeLayout">
+            <p>Layout2</p>
+            <p>----------------------------------------------------------------</p>
+        </div>
+        <p>时间：
+            <input type="number" style="width:50px"> 值：
+            <input type="text" style="width:50px">
+            <button>添加时间点</button>
+            <button>播放</button>
+            <button>暂停</button>
+        </p>
+    </div>
 </body>
 
 </html>
