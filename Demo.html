@@ -26,12 +26,12 @@
 <body>
     <div id="content">
         <div>
-            <button onclick="AE('discrete').start();">间隔</button>
-            <button onclick="AE('easing').start();">补帧</button>
-            <button onclick="AE('deMix').start();">混合</button>
-            <button onclick="AE('notarget','testBox2').start();">动态套用动画到2</button>
-            <button onclick="AE('notarget','testBox2').start();AE('notarget','testBox3').start();">动态套用动画到23</button>
-            <button onclick="AE('easingcolor').start();">颜色</button>
+            <button title="AE('discrete').start();" onclick="AE('discrete').start();">间隔</button>
+            <button title="AE('easing').start();" onclick="AE('easing').start();">补帧</button>
+            <button title="AE('deMix').start();" onclick="AE('deMix').start();">混合</button>
+            <button title="AE('notarget','#testBox2').start();" onclick="AE('notarget','#testBox2').start();">动态套用到testBox2</button>
+            <button title="AE('notarget','div[id^='testBox]').start();" onclick="AE('notarget','div[id^=\'testBox\']').start();">动态套用到所有testBox</button>
+            <button title="AE('easingcolor').start();" onclick="AE('easingcolor').start();">颜色</button>
             <button onclick="AE.engine.design.init('content');">设计器，施工中</button>
             <button onclick="AE.engine.design.close();">关闭设计器</button>
         </div>
@@ -58,116 +58,116 @@
         </div>
     </div>
     <storyboard id="discrete">
-        <animation target="testBox" property="margin-left" repeat="1">
+        <animation target="#testBox" property="margin-left" repeat="1">
             <discrete time="0" value="0"></discrete>
             <discrete time="500" value="50px"></discrete>
             <discrete time="1000" value="0"></discrete>
         </animation>
-        <animation target="testBox2" property="margin-left" repeat="1">
+        <animation target="#testBox2" property="margin-left" repeat="1">
             <discrete time="0" value="0"></discrete>
             <discrete time="500" value="150px"></discrete>
             <discrete time="1000" value="0"></discrete>
         </animation>
-        <animation target="testBox3" property="margin-left" repeat="1">
+        <animation target="#testBox3" property="margin-left" repeat="1">
             <discrete time="0" value="0"></discrete>
             <discrete time="500" value="250px"></discrete>
             <discrete time="1000" value="0"></discrete>
         </animation>
-        <animation target="testBox4" property="margin-left" repeat="1">
+        <animation target="#testBox4" property="margin-left" repeat="1">
             <discrete time="0" value="0"></discrete>
             <discrete time="500" value="350px"></discrete>
             <discrete time="1000" value="0"></discrete>
         </animation>
-        <animation target="testBox5" property="margin-left" repeat="1">
+        <animation target="#testBox5" property="margin-left" repeat="1">
             <discrete time="0" value="0"></discrete>
             <discrete time="500" value="450px"></discrete>
             <discrete time="1000" value="0"></discrete>
         </animation>
-        <animation target="testBox6" property="margin-left" repeat="1">
+        <animation target="#testBox6" property="margin-left" repeat="1">
             <discrete time="0" value="0"></discrete>
             <discrete time="500" value="550px"></discrete>
             <discrete time="1000" value="0"></discrete>
         </animation>
     </storyboard>
     <storyboard id="easing">
-        <animation target="testBox" property="margin-left" repeat="2">
+        <animation target="#testBox" property="margin-left" repeat="2">
             <easing time="0" value="0" suffix="px"></easing>
             <easing time="500" value="50" suffix="px"></easing>
             <easing time="1000" value="0" suffix="px"></easing>
         </animation>
-        <animation target="testBox2" property="margin-left" repeat="1">
+        <animation target="#testBox2" property="margin-left" repeat="1">
             <easing time="0" value="0" suffix="px"></easing>
             <easing time="500" value="150" suffix="px"></easing>
             <easing time="1000" value="0" suffix="px"></easing>
         </animation>
-        <animation target="testBox3" property="margin-left" repeat="1">
+        <animation target="#testBox3" property="margin-left" repeat="1">
             <easing time="0" value="0" suffix="px"></easing>
             <easing time="500" value="250" suffix="px"></easing>
             <easing time="1000" value="0" suffix="px"></easing>
         </animation>
-        <animation target="testBox" property="opacity" repeat="1">
+        <animation target="#testBox" property="opacity" repeat="1">
             <easing time="0" value="1"></easing>
             <easing time="500" value="0"></easing>
             <easing time="1000" value="1"></easing>
         </animation>
-        <animation target="testBox2" property="opacity" repeat="1">
+        <animation target="#testBox2" property="opacity" repeat="1">
             <easing time="0" value="1"></easing>
             <easing time="500" value="0"></easing>
             <easing time="1000" value="1"></easing>
         </animation>
-        <animation target="testBox3" property="opacity" repeat="1">
+        <animation target="#testBox3" property="opacity" repeat="1">
             <easing time="0" value="1"></easing>
             <easing time="500" value="0"></easing>
             <easing time="1000" value="1"></easing>
         </animation>
-        <animation target="testBox4" property="margin-left" repeat="1">
+        <animation target="#testBox4" property="margin-left" repeat="1">
             <easing time="0" value="0" suffix="px"></easing>
             <easing time="500" value="350" suffix="px"></easing>
             <easing time="1000" value="0" suffix="px"></easing>
         </animation>
-        <animation target="testBox5" property="margin-left" repeat="1">
+        <animation target="#testBox5" property="margin-left" repeat="1">
             <easing time="0" value="0" suffix="px"></easing>
             <easing time="500" value="450" suffix="px"></easing>
             <easing time="1000" value="0" suffix="px"></easing>
         </animation>
-        <animation target="testBox6" property="margin-left" repeat="1">
+        <animation target="#testBox6" property="margin-left" repeat="1">
             <easing time="0" value="0" suffix="px"></easing>
             <easing time="500" value="550" suffix="px"></easing>
             <easing time="1000" value="0" suffix="px"></easing>
         </animation>
     </storyboard>
     <storyboard id="deMix">
-        <animation target="testBox" property="margin-left" repeat="1">
+        <animation target="#testBox" property="margin-left" repeat="1">
             <discrete time="0" value="0" suffix="px"></discrete>
             <discrete time="500" value="50" suffix="px"></discrete>
             <easing time="500" value="50" suffix="px"></easing>
             <easing time="1000" value="0" suffix="px"></easing>
         </animation>
-        <animation target="testBox2" property="margin-left" repeat="1">
+        <animation target="#testBox2" property="margin-left" repeat="1">
             <discrete time="0" value="0" suffix="px"></discrete>
             <discrete time="500" value="150" suffix="px"></discrete>
             <easing time="500" value="150" suffix="px"></easing>
             <easing time="1000" value="0" suffix="px"></easing>
         </animation>
-        <animation target="testBox3" property="margin-left" repeat="1">
+        <animation target="#testBox3" property="margin-left" repeat="1">
             <discrete time="0" value="0" suffix="px"></discrete>
             <discrete time="500" value="250" suffix="px"></discrete>
             <easing time="500" value="250" suffix="px"></easing>
             <easing time="1000" value="0" suffix="px"></easing>
         </animation>
-        <animation target="testBox4" property="margin-left" repeat="1">
+        <animation target="#testBox4" property="margin-left" repeat="1">
             <discrete time="0" value="0" suffix="px"></discrete>
             <discrete time="500" value="350" suffix="px"></discrete>
             <easing time="500" value="350" suffix="px"></easing>
             <easing time="1000" value="0" suffix="px"></easing>
         </animation>
-        <animation target="testBox5" property="margin-left" repeat="1">
+        <animation target="#testBox5" property="margin-left" repeat="1">
             <discrete time="0" value="0" suffix="px"></discrete>
             <discrete time="500" value="450" suffix="px"></discrete>
             <easing time="500" value="450" suffix="px"></easing>
             <easing time="1000" value="0" suffix="px"></easing>
         </animation>
-        <animation target="testBox6" property="margin-left" repeat="1">
+        <animation target="#testBox6" property="margin-left" repeat="1">
             <discrete time="0" value="0" suffix="px"></discrete>
             <discrete time="500" value="550" suffix="px"></discrete>
             <easing time="500" value="550" suffix="px"></easing>
@@ -182,7 +182,7 @@
         </animation>
     </storyboard>
     <storyboard id="easingcolor">
-        <animation target="testBox" property="border-color" repeat="2">
+        <animation target="#testBox" property="border-color" repeat="2">
             <easingcolor time="0" value="ff0000" prefix="#"></easingcolor>
             <easingcolor time="500" value="00ff00" prefix="#"></easingcolor>
             <easingcolor time="1000" value="0000ff" prefix="#"></easingcolor>

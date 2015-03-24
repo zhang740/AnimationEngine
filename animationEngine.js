@@ -15,6 +15,7 @@
 }(typeof window !== "undefined" ? window : this, function(window) {
     var document = window.document,
         _oldAE = window.AE,
+        _tmpObjId = 0,
         version = "0.0.5",
         rmsPrefix = /^-ms-/,
         rdashAlpha = /-([\da-z])/gi,
@@ -113,10 +114,13 @@
                     }
                 };
 
-                var repeat = parseInt(getAttr(anis[i], 'repeat')) || 1;
+                var repeat = parseInt(getAttr(anis[i], 'repeat')) || 1,
+                    targets = target || getAttr(anis[i], 'target'),
+                    property = getAttr(anis[i], 'property');
+                if (!targets || !property) continue;
                 this.animations.push({
-                    target: target || getAttr(anis[i], 'target'),
-                    property: getAttr(anis[i], 'property'),
+                    targets: targets,
+                    property: camelCase(property),
                     keyList: keyList,
                     repeat: repeat
                 });
@@ -124,10 +128,27 @@
         };
     };
 
-    function AE(sb, target) {
+    function AE(sb, targets) {
+        switch (typeof targets) {
+            case "undefined":
+                break;
+            case "string":
+                targets = document.querySelectorAll(targets);
+                break;
+            case "object":
+                targets = [targets];
+                break;
+            case "array":
+                //TODO 检查组内对象
+                break;
+            default:
+                return null;
+        }
         if (typeof sb == "string") sb = document.getElementById(sb);
         if (typeof sb == "object") {
-            storyboards[sb.id] = new StoryBoard(sb, target);
+            //TODO sb为JSON对象
+            if (sb.tagName.toLowerCase() != 'storyboard') return null;
+            storyboards[sb.id] = new StoryBoard(sb, targets);
             return storyboards[sb.id];
         };
         return engine;
@@ -145,11 +166,13 @@
 
                 if (kl.time <= vtime) {
                     var data = kl.handler.process(vtime, j > 0 ? ani.keyList[j - 1].data : null, kl.data, j < ani.keyList.length - 1 ? ani.keyList[j + 1].data : null);
-                    Runtime.idx[ani.targetid][ani.property] = kl.prefix + data.value + kl.suffix;
-                    var tmp = [];
-                    var target = ani.target;
-                    for (var x in Runtime.idx[ani.targetid]) {
-                        target.style[x] = Runtime.idx[ani.targetid][x];
+                    for (var k = 0, atLength = ani.targets.length; k < atLength; k++) {
+                        var target = ani.targets[k];
+                        Runtime.idx[target.id][ani.property] = kl.prefix + data.value + kl.suffix;
+                        var tmp = [];
+                        for (var attr in Runtime.idx[target.id]) {
+                            target.style[attr] = Runtime.idx[target.id][attr];
+                        }
                     }
                     if (data.pass) {
                         ani._renderIndex++;
@@ -174,9 +197,10 @@
             delete this._preRenderRuntime;
             expectFPS = expectFPS || engine.expectFPS;
             var Runtime = this._preRenderRuntime = {
-                    animations: this.animations.slice(0)
-                },
-                defaultHandler = engine._aniHandlers['discrete'],
+                idx: {},
+                animations: this.animations.slice(0)
+            }
+            defaultHandler = engine._aniHandlers['discrete'],
                 _interval = 1 / engine.expectFPS * 1000;
             if (!defaultHandler) {
                 console.log('不能使用预渲染，缺少逐帧效果处理器');
@@ -184,11 +208,21 @@
                 return;
             }
 
-            for (var i = 0; i < Runtime.animations.length; i++) {
+            for (var i = Runtime.animations.length - 1; i >= 0; i--) {
                 var ani = Runtime.animations[i];
-                ani.targetid = ani.target;
-                ani.target = document.getElementById(ani.target);
-                ani.property = camelCase(ani.property);
+                if (typeof ani.targets == 'string') {
+                    ani.targets = document.querySelectorAll(ani.targets);
+                }
+                if (ani.targets.length <= 0) {
+                    Runtime.animations.splice(i, 1);
+                    continue;
+                }
+                for (var k = ani.targets.length - 1; k >= 0; k--) {
+                    if (!ani.targets[k].id) {
+                        ani.targets[k].id = "_AEO_" + _tmpObjId;
+                    }
+                    Runtime.idx[ani.targets[k].id] = {};
+                };
                 ani._renderIndex = 0;
                 ani._count = 0;
 
@@ -217,20 +251,31 @@
             };
             if (this._preRenderRuntime) {
                 Runtime.animations = this._preRenderRuntime.animations.slice(0);
-                for (var i = 0; i < Runtime.animations.length; i++) {
-                    Runtime.idx[Runtime.animations[i].targetid] = {};
-                };
+                var nidx = {};
+                for (var id in this._preRenderRuntime.idx) {
+                    nidx[id] = {};
+                }
+                Runtime.idx = nidx;
                 console.log('Using PreRender');
             } else {
                 Runtime.animations = this.animations.slice(0);
-                for (var i = 0; i < Runtime.animations.length; i++) {
+                for (var i = Runtime.animations.length - 1; i >= 0; i--) {
                     var ani = Runtime.animations[i];
-                    ani.targetid = ani.target;
-                    ani.target = document.getElementById(ani.target);
-                    ani.property = camelCase(ani.property);
+                    if (typeof ani.targets == 'string') {
+                        ani.targets = document.querySelectorAll(ani.targets);
+                    }
+                    if (ani.targets.length <= 0) {
+                        Runtime.animations.splice(i, 1);
+                        continue;
+                    }
+                    for (var k = ani.targets.length - 1; k >= 0; k--) {
+                        if (!ani.targets[k].id) {
+                            ani.targets[k].id = "_AEO_" + _tmpObjId;
+                        }
+                        Runtime.idx[ani.targets[k].id] = {};
+                    };
                     ani._renderIndex = 0;
                     ani._count = 0;
-                    Runtime.idx[ani.targetid] = {};
                 };
                 console.log('Using RealTimeRender');
             }
