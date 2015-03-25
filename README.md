@@ -7,9 +7,8 @@
 已支持预渲染帧序列。
 
 # 兼容性
-目前的兼容性问题为IE8及以下不支持自定义标签的children属性。
-解决方案：
-使用div标签，然后使用name/type标识类型 或 使用JSON方式提供数据源。
+目前的兼容性问题为IE7及以下不支持（因为使用了querySelector、querySelectorAll，如需兼容可考虑使用jquery辅助）。
+IE8已用html5shiv类似方案解决。
 
 # 使用
 ```html
@@ -27,7 +26,6 @@ http://zhang740.github.io/AnimationEngine/
 
 # TODO
 功能：
-- div标签，name/type标识类型，兼容
 - JSON数据源
 - 扩充效果
 - 设计器

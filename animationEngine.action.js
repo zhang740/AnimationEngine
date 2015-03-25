@@ -60,9 +60,9 @@
                 var r = data.r + (time - data.time) / (next.time - data.time) * (next.r - data.r);
                 var g = data.g + (time - data.time) / (next.time - data.time) * (next.g - data.g);
                 var b = data.b + (time - data.time) / (next.time - data.time) * (next.b - data.b);
-                r = ("0" + parseInt(r).toString(16)).slice(-2);
-                g = ("0" + parseInt(g).toString(16)).slice(-2);
-                b = ("0" + parseInt(b).toString(16)).slice(-2);
+                r = ("0" + Math.round(r).toString(16)).slice(-2);
+                g = ("0" + Math.round(g).toString(16)).slice(-2);
+                b = ("0" + Math.round(b).toString(16)).slice(-2);
                 result.value = r + g + b;
             }
             return result;

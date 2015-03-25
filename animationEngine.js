@@ -28,7 +28,6 @@
         engine = {},
         storyboards = {},
         Timer = {
-            _isStop: false,
             _startTime: 0,
             _sbs: [],
             start: function(sb) {
@@ -56,11 +55,10 @@
                         }
                     };
                 } else {
-                    Timer._isStop = true;
+                    Timer._sbs.length = 0;
                 }
             },
             tick: function(time) {
-                if (Timer._isStop) return;
                 Timer._js++;
                 var now = new Date().getTime();
 
