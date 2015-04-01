@@ -64,10 +64,10 @@
                     var direct = directives[i];
                     var objs = document.querySelectorAll('[ae-' + direct.tag + ']');
                     for (var j = objs.length - 1; j >= 0; j--) {
-                        obj = objs[j];
+                        var obj = objs[j];
                         direct.init(obj, obj.getAttribute('ae-' + direct.tag));
-                    };
-                };
+                    }
+                }
             }
         };
 
@@ -83,8 +83,8 @@
                     if (!obj) {
                         return;
                     }
-                };
-                if (typeof obj == 'function') {
+                }
+                if (typeof obj === 'function') {
                     obj();
                 }
             });

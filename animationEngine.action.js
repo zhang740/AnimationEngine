@@ -4,16 +4,16 @@
         ac = engine.ac = {
             tween: {
                 cubicBezier: function(t, cp) {
-                    var cp = cp.split(',');
+                    cp = cp.split(',');
                     for (var i = cp.length - 1; i >= 0; i--) {
                         cp[i] = parseFloat(cp[i]);
-                    };
-                    var ct = 1 - t,
+                    }
+                    var ct = 1.0 - t,
                         ct2 = ct * ct,
                         t2 = t * t,
 
-                        b = 3 * t * ct2,
-                        c = 3 * t2 * ct,
+                        b = 3.0 * t * ct2,
+                        c = 3.0 * t2 * ct,
                         d = t2 * t;
 
                     return cp[0] * b + cp[1] * c + 1 * d;
@@ -49,7 +49,7 @@
                 },
 
                 easeOutQuart: function(pos) {
-                    return -(Math.pow((pos - 1), 4) - 1)
+                    return -(Math.pow((pos - 1), 4) - 1);
                 },
 
                 easeInOutQuart: function(pos) {
@@ -79,20 +79,20 @@
                 },
 
                 easeInOutSine: function(pos) {
-                    return (-.5 * (Math.cos(Math.PI * pos) - 1));
+                    return (-0.5 * (Math.cos(Math.PI * pos) - 1));
                 },
 
                 easeInExpo: function(pos) {
-                    return (pos == 0) ? 0 : Math.pow(2, 10 * (pos - 1));
+                    return (pos === 0) ? 0 : Math.pow(2, 10 * (pos - 1));
                 },
 
                 easeOutExpo: function(pos) {
-                    return (pos == 1) ? 1 : -Math.pow(2, -10 * pos) + 1;
+                    return (pos === 1) ? 1 : -Math.pow(2, -10 * pos) + 1;
                 },
 
                 easeInOutExpo: function(pos) {
-                    if (pos == 0) return 0;
-                    if (pos == 1) return 1;
+                    if (pos === 0) return 0;
+                    if (pos === 1) return 1;
                     if ((pos /= 0.5) < 1) return 0.5 * Math.pow(2, 10 * (pos - 1));
                     return 0.5 * (-Math.pow(2, -10 * --pos) + 2);
                 },
@@ -102,7 +102,7 @@
                 },
 
                 easeOutCirc: function(pos) {
-                    return Math.sqrt(1 - Math.pow((pos - 1), 2))
+                    return Math.sqrt(1 - Math.pow((pos - 1), 2));
                 },
 
                 easeInOutCirc: function(pos) {
@@ -114,11 +114,11 @@
                     if ((pos) < (1 / 2.75)) {
                         return (7.5625 * pos * pos);
                     } else if (pos < (2 / 2.75)) {
-                        return (7.5625 * (pos -= (1.5 / 2.75)) * pos + .75);
+                        return (7.5625 * (pos -= (1.5 / 2.75)) * pos + 0.75);
                     } else if (pos < (2.5 / 2.75)) {
-                        return (7.5625 * (pos -= (2.25 / 2.75)) * pos + .9375);
+                        return (7.5625 * (pos -= (2.25 / 2.75)) * pos + 0.9375);
                     } else {
-                        return (7.5625 * (pos -= (2.625 / 2.75)) * pos + .984375);
+                        return (7.5625 * (pos -= (2.625 / 2.75)) * pos + 0.984375);
                     }
                 },
 
@@ -162,11 +162,11 @@
                     if (pos < (1 / 2.75)) {
                         return (7.5625 * pos * pos);
                     } else if (pos < (2 / 2.75)) {
-                        return (7.5625 * (pos -= (1.5 / 2.75)) * pos + .75);
+                        return (7.5625 * (pos -= (1.5 / 2.75)) * pos + 0.75);
                     } else if (pos < (2.5 / 2.75)) {
-                        return (7.5625 * (pos -= (2.25 / 2.75)) * pos + .9375);
+                        return (7.5625 * (pos -= (2.25 / 2.75)) * pos + 0.9375);
                     } else {
-                        return (7.5625 * (pos -= (2.625 / 2.75)) * pos + .984375);
+                        return (7.5625 * (pos -= (2.625 / 2.75)) * pos + 0.984375);
                     }
                 },
 
@@ -174,11 +174,11 @@
                     if (pos < (1 / 2.75)) {
                         return (7.5625 * pos * pos);
                     } else if (pos < (2 / 2.75)) {
-                        return 2 - (7.5625 * (pos -= (1.5 / 2.75)) * pos + .75);
+                        return 2 - (7.5625 * (pos -= (1.5 / 2.75)) * pos + 0.75);
                     } else if (pos < (2.5 / 2.75)) {
-                        return 2 - (7.5625 * (pos -= (2.25 / 2.75)) * pos + .9375);
+                        return 2 - (7.5625 * (pos -= (2.25 / 2.75)) * pos + 0.9375);
                     } else {
-                        return 2 - (7.5625 * (pos -= (2.625 / 2.75)) * pos + .984375);
+                        return 2 - (7.5625 * (pos -= (2.625 / 2.75)) * pos + 0.984375);
                     }
                 },
 
@@ -195,10 +195,6 @@
                     return Math.pow(pos, 0.25);
                 },
 
-                linear: function(pos) {
-                    return pos
-                },
-
                 sinusoidal: function(pos) {
                     return (-Math.cos(pos * Math.PI) / 2) + 0.5;
                 },
@@ -208,7 +204,7 @@
                 },
 
                 mirror: function(pos, transition) {
-                    transition = transition || tween.sinusoidal;
+                    transition = transition || this.sinusoidal;
                     if (pos < 0.5)
                         return transition(pos * 2);
                     else
@@ -216,8 +212,8 @@
                 },
 
                 flicker: function(pos) {
-                    var pos = pos + (Math.random() - 0.5) / 5;
-                    return tween.sinusoidal(pos < 0 ? 0 : pos > 1 ? 1 : pos);
+                    pos = pos + (Math.random() - 0.5) / 5;
+                    return this.sinusoidal(pos < 0 ? 0 : pos > 1 ? 1 : pos);
                 },
 
                 wobble: function(pos) {
@@ -225,7 +221,7 @@
                 },
 
                 pulse: function(pos, pulses) {
-                    return (-Math.cos((pos * ((pulses || 5) - .5) * 2) * Math.PI) / 2) + .5;
+                    return (-Math.cos((pos * ((pulses || 5) - 0.5) * 2) * Math.PI) / 2) + 0.5;
                 },
 
                 blink: function(pos, blinks) {
@@ -237,11 +233,11 @@
                 },
 
                 none: function(pos) {
-                    return 0
+                    return 0;
                 },
 
                 full: function(pos) {
-                    return 1
+                    return 1;
                 }
             }
         };

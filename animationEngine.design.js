@@ -87,7 +87,7 @@
             if (this._workspace) return;
             this._panel = document.getElementById('designPanel');
             this._timePanel = document.getElementById('designTimePanel');
-            if (typeof dom == "string") dom = document.getElementById(dom);
+            if (typeof dom === "string") dom = document.getElementById(dom);
             Event.addEvent(dom, 'mouseover', this.onmouseover);
             Event.addEvent(dom, 'mouseout', this.onmouseout);
             Event.addEvent(dom, 'click', this.onclick);
