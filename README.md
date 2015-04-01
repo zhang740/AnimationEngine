@@ -3,7 +3,7 @@
 
 # 介绍
 基于描述式的使用方式，以后会加入可视化设计器实现所见即所得。
-当前仅为概念验证阶段，效果仅包含间断、连续、颜色渐变。
+当前为概念验证阶段，目前效果包含间断、连续（已扩充一些缓动函数）、颜色渐变。
 已支持预渲染帧序列。
 
 # 兼容性
@@ -13,10 +13,9 @@ IE8已用html5shiv类似方案解决。
 # 使用
 ```html
 <storyboard id="demo">
-    <animation target="testBox" property="margin-left" repeat="1">
+    <animation target="testBox" property="margin-left" repeat="1" reverse="true">
         <easing time="0" value="0" suffix="px"></easing>
         <easing time="500" value="150" suffix="px"></easing>
-        <easing time="1000" value="0" suffix="px"></easing>
     </animation>
 </storyboard>
 ```
@@ -25,9 +24,7 @@ IE8已用html5shiv类似方案解决。
 http://zhang740.github.io/AnimationEngine/
 
 # TODO
-功能：
 - JSON数据源
-- 扩充效果
 - 设计器
 
 # License
